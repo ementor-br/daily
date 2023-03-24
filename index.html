@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sala de Mentoria - Daily</title>
+</head>
+<body>
+</body>
+
+<script crossorigin="" src="https://unpkg.com/@daily-co/daily-js"></script>
+<script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      if (!urlParams.has('id') && !urlParams.has('fl-builder')){
+        window.location.replace("https://www.ementor.com.br/error/");
+      }
+      if (!urlParams.has('fl-builder')){
+          const idmentoria = urlParams.get('id');
+          let mentoria = false;
+          if (!isNaN(idmentoria)) mentoria = true;
+          const callFrame = DailyIframe.createFrame({
+            iframeStyle: {
+              position: 'fixed',
+              top: '0px',
+              left: 0,
+              width: '100%',
+              height: '100%',
+              borderWidth: '0px',
+            },
+            showLeaveButton: true,
+            showFullscreenButton: false,
+          });
+          callFrame.setTheme({
+            colors: {
+              accent: '#FFBE00',
+              accentText: '#FFFFFF',
+              background: '#00022E',
+              backgroundAccent: '#16003D',
+              baseText: '#FFFFFF',
+              border: '#433fb5',
+              mainAreaBg: '#000000',
+              mainAreaBgAccent: '#333333',
+              mainAreaText: '#FFF',
+              supportiveText: '#808080',
+            },
+          });
+          callFrame.join({ url: 'https://ementor.daily.co/'+idmentoria });
+          let alertaavaliacao = false;
+          let alertafoto = false;
+          callFrame.on('participant-counts-updated', (event) => {
+            let total = callFrame.participantCounts()['present'] + callFrame.participantCounts()['hidden'];
+            if (total > 1 && mentoria) {
+              if (!alertaavaliacao){
+                alertaavaliacao = true;
+                setTimeout(function(){
+                  alert("Lembre-se de avaliar a mentoria ao término da sessão. Você será redirecionado automaticamente ao clicar em 'Sair'.")
+              }, 2400000);
+              }
+              if (!alertafoto){
+                alertafoto = true;
+                setTimeout(function(){
+                  alert("Esperamos que tenham uma ótima mentoria. Dica: tire uma foto da sessão e poste nas redes para mostrar que você faz parte da maior comunidade de mentores do Brasil (e não esqueça de marcar a gente: @ementor.br).")
+                }, 128000);
+              }
+            }
+          });
+          callFrame.on('left-meeting', (event) => {
+            if (mentoria) {
+              window.alert('Obrigado por realizar uma mentoria na eMentor. Você será redirecionado para o formulário de avaliação da sessão.');
+              window.location.href='https://tally.so/r/wzxQ6E?id-mentoria=' + idmentoria;
+            }
+          });
+      }
+    document.getElementsByClassName("wpaicg_chat_widget")[0].remove()
+</script>
+  
+  </html>
