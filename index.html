@@ -26,26 +26,30 @@
               height: '100%',
               borderWidth: '0px',
             },
+            theme: {
+              colors: {
+                accent: "#FFF",
+                accentText: "#111111",
+                background: "#111111",
+                backgroundAccent: "#111111",
+                baseText: "#FFF",
+                border: "#292929",
+                mainAreaBg: "#111111",
+                mainAreaBgAccent: "#111111",
+                mainAreaText: "#FFF",
+                supportiveText: "#FFF",
+              },
+            },
             showLeaveButton: true,
             showFullscreenButton: false,
-          });
-          callFrame.setTheme({
-            colors: {
-              accent: '#FFBE00',
-              accentText: '#FFFFFF',
-              background: '#00022E',
-              backgroundAccent: '#16003D',
-              baseText: '#FFFFFF',
-              border: '#433fb5',
-              mainAreaBg: '#000000',
-              mainAreaBgAccent: '#333333',
-              mainAreaText: '#FFF',
-              supportiveText: '#808080',
-            },
+            lang: 'pt',
           });
           callFrame.join({ url: 'https://ementor.daily.co/'+idmentoria });
           let alertaavaliacao = false;
           let alertafoto = false;
+          callFrame.on('loaded', (event) => {
+            document.getElementById("haircheck-join").firstChild.innerHTML = "entrar"
+          });
           callFrame.on('participant-counts-updated', (event) => {
             let total = callFrame.participantCounts()['present'] + callFrame.participantCounts()['hidden'];
             if (total > 1 && mentoria) {
