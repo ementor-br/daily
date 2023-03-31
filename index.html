@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<link rel="shortcut icon" media="(prefers-color-scheme: light)" href="https://django.e-mentor.com.br/media/favicon.ico">
+<link href="https://django.e-mentor.com.br/media/favicon-dark.ico" rel="shortcut icon" media="(prefers-color-scheme: dark)">
 <head>
 <title>Sala de Mentoria - Daily</title>
 </head>
@@ -44,12 +46,17 @@
             showFullscreenButton: false,
             lang: 'pt',
           });
+          callFrame.on('loaded', (event) => {
+            document.getElementById("haircheck-join").firstChild.innerHTML = "Entrar";
+          });
           callFrame.join({ url: 'https://ementor.daily.co/'+idmentoria });
           let alertaavaliacao = false;
           let alertafoto = false;
-          callFrame.on('started-camera', (event) => {
-            document.getElementById("haircheck-join").firstChild.innerHTML = "entrar"
-          });
+          try {
+              document.getElementById("haircheck-join").firstChild.innerHTML = "Entrar";
+          } catch (e) {
+              console.log(e);
+          }
           callFrame.on('participant-counts-updated', (event) => {
             let total = callFrame.participantCounts()['present'] + callFrame.participantCounts()['hidden'];
             if (total > 1 && mentoria) {
