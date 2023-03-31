@@ -47,7 +47,7 @@
           callFrame.join({ url: 'https://ementor.daily.co/'+idmentoria });
           let alertaavaliacao = false;
           let alertafoto = false;
-          callFrame.on('loaded', (event) => {
+          callFrame.on('started-camera', (event) => {
             document.getElementById("haircheck-join").firstChild.innerHTML = "entrar"
           });
           callFrame.on('participant-counts-updated', (event) => {
@@ -74,7 +74,6 @@
             }
           });
       }
-    document.getElementsByClassName("wpaicg_chat_widget")[0].remove()
 </script>
   
   </html>
