@@ -45,6 +45,14 @@
             showLeaveButton: true,
             showFullscreenButton: false,
             lang: 'pt',
+            customTrayButtons: {
+              customButtonOne: {
+                iconPath: 'https://example.com/path/to/your/icon.svg',
+                iconPathDarkMode: 'https://example.com/path/to/your/darkmode/icon.svg',
+                label: 'Sair e Avaliar',
+                tooltip: 'Encerrar sessão e avaliar mentoria.',
+              },
+            },
           });
           callFrame.join({ url: 'https://ementor.daily.co/'+idmentoria });
           let alertaavaliacao = false;
