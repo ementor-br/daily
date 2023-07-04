@@ -42,12 +42,12 @@
                 supportiveText: "#FFF",
               },
             },
-            showLeaveButton: true,
+            showLeaveButton: false,
             showFullscreenButton: false,
             lang: 'pt',
             customTrayButtons: {
               saireavaliar: {
-                iconPath: 'https://www.ementor.com.br/wp-content/uploads/2023/07/icons8-fechar-janela-48.svg',
+                iconPath: 'https://www.ementor.com.br/wp-content/uploads/2023/07/icons8-fechar-janela-48-1.svg',
                 label: 'Sair e Avaliar',
                 tooltip: 'Encerrar sessão e avaliar mentoria.',
               },
@@ -79,11 +79,13 @@
               }
             }
           });
-          callFrame.on('left-meeting', (event) => {
-            if (mentoria) {
-              window.alert('Obrigado por realizar uma mentoria na eMentor. Você será redirecionado para o formulário de avaliação da sessão.');
-              window.location.href='https://tally.so/r/wzxQ6E?id-mentoria=' + idmentoria;
-            }
+          callFrame.on('joined-meeting', (event) => {
+                callFrame.on('left-meeting', (event) => {
+                  if (mentoria) {
+                    window.alert('Obrigado por realizar uma mentoria na eMentor. Você será redirecionado para o formulário de avaliação da sessão.');
+                    window.location.href='https://tally.so/r/wzxQ6E?id-mentoria=' + idmentoria;
+                  }
+                });
           });
       }
 </script>
