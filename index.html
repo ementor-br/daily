@@ -46,15 +46,20 @@
             showFullscreenButton: false,
             lang: 'pt',
             customTrayButtons: {
-              customButtonOne: {
-                iconPath: 'https://example.com/path/to/your/icon.svg',
-                iconPathDarkMode: 'https://example.com/path/to/your/darkmode/icon.svg',
+              saireavaliar: {
+                iconPath: 'https://www.ementor.com.br/wp-content/uploads/2023/07/icons8-fechar-janela-48.svg',
                 label: 'Sair e Avaliar',
                 tooltip: 'Encerrar sessão e avaliar mentoria.',
               },
             },
           });
           callFrame.join({ url: 'https://ementor.daily.co/'+idmentoria });
+          callFrame.on("custom-button-click", (ev) => {
+            if (ev.button_id === "saireavaliar") {
+              window.alert('Obrigado por realizar uma mentoria na eMentor. Você será redirecionado para o formulário de avaliação da sessão.');
+              window.location.href='https://tally.so/r/wzxQ6E?id-mentoria=' + idmentoria;
+            }
+          });
           let alertaavaliacao = false;
           let alertafoto = false;
           callFrame.on('participant-counts-updated', (event) => {
